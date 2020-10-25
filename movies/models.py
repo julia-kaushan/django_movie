@@ -84,3 +84,15 @@ class MovieShots(models.Model):
     class Meta:
         verbose_name = "Кадры из фильма"
         verbose_name_plural = "Кадры из фильма"
+
+
+class RatingStar(models.Model):
+    """Звезда рейтинга"""
+    value = models.PositiveSmallIntegerField("Значение", default=0)
+
+    def __str__(self):
+        return self.value
+
+    class Meta:
+        verbose_name = "Звезда рейтинга"
+        verbose_name_plural = "Звезды рейтинга"
