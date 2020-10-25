@@ -44,7 +44,7 @@ class Genre(models.Model):
         verbose_name_plural = "Жанры"
 
 
-class Movies(models.Model):
+class Movie(models.Model):
     """Фильм"""
     title = models.CharField("Название", max_length=100)
     tagline = models.CharField("Слоган", max_length=100, default='')
@@ -69,3 +69,18 @@ class Movies(models.Model):
     class Meta:
         verbose_name = "Фильм"
         verbose_name_plural = "Фильмы"
+
+
+class MovieShots(models.Model):
+    """Кадры из фильма"""
+    title = models.CharField("Заголовок", max_length=100)
+    description = models.TextField("Описание")
+    image = models.ImageField("Изображение", upload_to="movie_shots/")
+    movie = models.ForeignKey(Movie, verbose_name="Фильм", on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = "Кадры из фильма"
+        verbose_name_plural = "Кадры из фильма"
