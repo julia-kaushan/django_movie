@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from django.views.generic.base import View
 
 from .models import Movie
@@ -12,8 +12,7 @@ class MoviesView(ListView):
     template_name = "movies/movies.html"
 
 
-class MovieDetailView(View):
+class MovieDetailView(DetailView):
     """Полное описание фильма"""
-    def get(self, request, slug):
-        movie = Movie.objects.get(url=slug)
-        return render(request, "movies/movie_detail.html", {"movie": movie})
+    model = Movie
+    slug_field = "url"
