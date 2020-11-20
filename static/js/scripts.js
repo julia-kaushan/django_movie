@@ -1,7 +1,6 @@
-
 function ajaxSend(url, params) {
     // Отправляем запрос
-    fetch( `${url}?${params}`, {
+    fetch(`${url}?${params}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -12,13 +11,13 @@ function ajaxSend(url, params) {
         .catch(error => console.error(error))
 }
 
-const forms = document.querySelector('form[name=filter]')
+const forms = document.querySelector('form[name=filter]');
 
-forms.addEventListener( 'submit', function (e) {
+forms.addEventListener('submit', function (e) {
     // Получаем данные из формы
     e.preventDefault();
     let url = this.action;
-    let params = new URLSearchParams( new FormData(this)).toString();
+    let params = new URLSearchParams(new FormData(this)).toString();
     ajaxSend(url, params);
 });
 
@@ -27,7 +26,7 @@ function render(data) {
     let template = Hogan.compile(html);
     let output = template.render(data);
 
-    const div = document.querySelector( '.left-ads-display>.row');
+    const div = document.querySelector('.left-ads-display>.row');
     div.innerHTML = output;
 }
 
@@ -40,7 +39,7 @@ let html = '\
             </div>\
             <div class="item-info-product">\
                 <h4 class="">\
-                    <a href="{{ url }}" class="editContent">{{ title }}</a>\
+                    <a href="/{{ url }}" class="editContent">{{ title }}</a>\
                 </h4>\
                 <div class="product_price">\
                     <div class="grid-price">\
